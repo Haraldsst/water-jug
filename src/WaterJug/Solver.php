@@ -29,21 +29,18 @@ class Solver
     /**
      * Returns the minimum number of steps to obtain exactly $c litres
      * in either vessel, or -1 if it is impossible.
+     * Throws InvalidArgumentException if any argument is not positive.
      */
     public function solve(int $a, int $b, int $c): int
     {
-        if ($a <= 0 || $b <= 0 || $c < 0) {
+        if ($a <= 0 || $b <= 0 || $c <= 0) {
             throw new InvalidArgumentException(
-                'Vessel capacities must be positive and target must be non-negative.'
+                'Vessel capacities and target must be positive.'
             );
         }
 
         if (!$this->isSolvable($a, $b, $c)) {
             return -1;
-        }
-
-        if ($c === 0) {
-            return 0;
         }
 
         return $this->strategy->search($a, $b, $c);

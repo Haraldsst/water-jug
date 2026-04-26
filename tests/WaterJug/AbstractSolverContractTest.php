@@ -37,9 +37,10 @@ abstract class AbstractSolverContractTest extends TestCase
 
     // --- Edge cases ---
 
-    public function testTargetIsZero(): void
+    public function testZeroTargetThrows(): void
     {
-        $this->assertSame(0, $this->solver->solve(5, 3, 0));
+        $this->expectException(InvalidArgumentException::class);
+        $this->solver->solve(5, 3, 0);
     }
 
     public function testTargetEqualsVesselA(): void
