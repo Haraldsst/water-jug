@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace WaterJug\Search;
 
 /**
- * Solves the Water Jug Problem using a closed-form mathematical approach.
+ * Solves the Water Jug Problem by simulating the two canonical pouring sequences.
  *
  * Instead of exploring the state space, this strategy simulates the two
  * canonical pouring sequences algebraically and picks the shorter one:
@@ -19,7 +19,7 @@ namespace WaterJug\Search;
  *
  * Complexity: O(max(a, b)) time, O(1) space — no queue or visited set.
  */
-final class ClosedFormStrategy implements SearchStrategy
+final class CanonicalSequenceStrategy implements SearchStrategy
 {
     public function search(int $capA, int $capB, int $target): int
     {

@@ -1,6 +1,6 @@
 {
     "name": "haralds/water-jug",
-    "description": "Water Jug Problem solver (BFS and closed-form strategies)",
+    "description": "Water Jug Problem solver (BFS and canonical-sequence strategies)",
     "type": "project",
     "license": "MIT",
     "authors": [

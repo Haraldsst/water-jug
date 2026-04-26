@@ -30,7 +30,7 @@ from `(0, 0)`. Each state has at most six neighbours (fill A, fill B, empty A, e
 pour A→B, pour B→A). BFS guarantees the first path found is the shortest.
 Runs in **O(a × b)** time and space.
 
-**Closed-form simulation** (`ClosedFormStrategy`): simulates the two canonical pouring sequences
+**Canonical sequence simulation** (`CanonicalSequenceStrategy`): simulates the two canonical pouring sequences
 algebraically — fill A first, or fill B first — and returns the shorter one. Every
 BFS-optimal path belongs to one of these two families, so `min(stepsFillingA, stepsFillingB)`
 always equals the BFS minimum. Runs in **O(max(a, b))** time and **O(1)** space.
