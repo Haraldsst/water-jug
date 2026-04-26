@@ -12,10 +12,17 @@ namespace WaterJug\Search;
  *   - Fill A repeatedly, pouring into B, emptying B when full
  *   - Fill B repeatedly, pouring into A, emptying A when full
  *
- * Every BFS-optimal path either starts by filling A or by filling B.
+ * Every BFS-optimal path either starts by filling A or by filling B:
+ * from (0,0) all other operations (empty, pour) are no-ops, so Fill A
+ * and Fill B are the only two distinct first moves.
  * Within each family the canonical sequence is optimal — it never
- * revisits a state. Therefore min(stepsFillingA, stepsFillingB)
- * always equals the true BFS minimum.
+ * revisits a state: each fill cycle advances the receive vessel's
+ * content by fillCap mod receiveCap, so the receive vessel visits each
+ * reachable level exactly once before the cycle would repeat. Any
+ * deviation (filling the receive vessel directly, emptying the fill
+ * vessel early, reversing a pour) either wastes a step or returns to a
+ * prior state. Therefore min(stepsFillingA, stepsFillingB) always
+ * equals the true BFS minimum.
  *
  * Complexity: O(max(a, b)) time, O(1) space — no queue or visited set.
  */
@@ -57,7 +64,7 @@ final class CanonicalSequenceStrategy implements SearchStrategy
             $inFill = $fillCap;
             $steps++;
 
-            if ($inFill === $target || $inReceive === $target) {
+            if ($inFill === $target) {
                 return $steps;
             }
 
